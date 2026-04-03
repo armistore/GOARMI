@@ -1,0 +1,5 @@
+{
+  "name": "GOARMI",
+  "description": "Aplikasi Ojek Online, Pengantaran Makanan, dan Jasa Titip Barang dengan Integrasi Google Maps.",
+  "requestFramePermissions": ["geolocation"]
+}

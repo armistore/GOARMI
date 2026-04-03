@@ -1,0 +1,59 @@
+{
+  "entities": {
+    "settings": {
+      "title": "Settings",
+      "description": "Global application settings like pricing rates.",
+      "type": "object",
+      "properties": {
+        "basePrice": { "type": "number", "description": "Base price for all services." },
+        "perKmRide": { "type": "number", "description": "Price per KM for GoRide." },
+        "perKmFood": { "type": "number", "description": "Price per KM for GoFood." },
+        "perKmSend": { "type": "number", "description": "Price per KM for GoSend." },
+        "perKmJastip": { "type": "number", "description": "Price per KM for GoJastip." }
+      },
+      "required": ["basePrice", "perKmRide", "perKmFood", "perKmSend", "perKmJastip"]
+    },
+    "bookings": {
+      "title": "Bookings",
+      "description": "User service bookings.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "service": { "type": "string", "enum": ["ride", "food", "send", "jastip"] },
+        "origin": { "type": "string" },
+        "destination": { "type": "string" },
+        "price": { "type": "number" },
+        "distance": { "type": "string" },
+        "duration": { "type": "string" },
+        "status": { "type": "string", "enum": ["searching", "booked", "completed", "cancelled"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "service", "origin", "destination", "price", "status", "createdAt"]
+    },
+    "users": {
+      "title": "Users",
+      "description": "User profiles and roles.",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string" },
+        "role": { "type": "string", "enum": ["admin", "user"] },
+        "displayName": { "type": "string" }
+      },
+      "required": ["email", "role"]
+    }
+  },
+  "firestore": {
+    "/settings/global": {
+      "schema": "settings",
+      "description": "Global pricing settings."
+    },
+    "/bookings/{bookingId}": {
+      "schema": "bookings",
+      "description": "Individual bookings."
+    },
+    "/users/{userId}": {
+      "schema": "users",
+      "description": "User profile information."
+    }
+  }
+}
